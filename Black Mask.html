@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Mask</title>
+    <link rel="icon" href="https://storage.teleservices.io/Teleservice_6f970b27e0b0.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #172a45;
+            --accent-color: #64ffda;
+            --text-color: #ccd6f6;
+            --text-secondary: #8892b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--primary-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .ocean-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: url('https://i.imgur.com/zGwS36V.jpeg') repeat-x;
+            background-size: 50% 100%;
+            animation: wave 15s linear infinite;
+            opacity: 0.1;
+        }
+
+        .wave:nth-child(1) {
+            animation-delay: 0s;
+            bottom: 0;
+            opacity: 0.05;
+        }
+
+        .wave:nth-child(2) {
+            animation-delay: -5s;
+            bottom: 10px;
+            opacity: 0.07;
+        }
+
+        .wave:nth-child(3) {
+            animation-delay: -10s;
+            bottom: 20px;
+            opacity: 0.1;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 50%;
+            animation: rise 15s infinite ease-in;
+        }
+
+        .bubble:nth-child(1) {
+            width: 40px;
+            height: 40px;
+            left: 10%;
+            animation-duration: 8s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 20px;
+            height: 20px;
+            left: 20%;
+            animation-duration: 5s;
+            animation-delay: 1s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 50px;
+            height: 50px;
+            left: 35%;
+            animation-duration: 7s;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(4) {
+            width: 80px;
+            height: 80px;
+            left: 50%;
+            animation-duration: 11s;
+            animation-delay: 0s;
+        }
+
+        .bubble:nth-child(5) {
+            width: 35px;
+            height: 35px;
+            left: 55%;
+            animation-duration: 6s;
+            animation-delay: 1s;
+        }
+
+        .bubble:nth-child(6) {
+            width: 45px;
+            height: 45px;
+            left: 65%;
+            animation-duration: 8s;
+            animation-delay: 3s;
+        }
+
+        .bubble:nth-child(7) {
+            width: 25px;
+            height: 25px;
+            left: 75%;
+            animation-duration: 7s;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(8) {
+            width: 80px;
+            height: 80px;
+            left: 80%;
+            animation-duration: 6s;
+            animation-delay: 1s;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -100px;
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(100px);
+            }
+            100% {
+                bottom: 1080px;
+                transform: translateX(-200px);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, var(--accent-color), #4facfe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin: 50px 0;
+            animation: slideUp 1s ease-in-out;
+        }
+
+        .welcome-section h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .welcome-section p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-section {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 60px;
+            border-radius: 30px;
+            background: var(--secondary-color);
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .social-btn:hover::before {
+            left: 100%;
+        }
+
+        .telegram {
+            border: 2px solid #0088cc;
+        }
+
+        .telegram:hover {
+            background: #0088cc;
+        }
+
+        .tiktok {
+            border: 2px solid #ff0050;
+        }
+
+        .tiktok:hover {
+            background: #ff0050;
+        }
+
+        .youtube {
+            border: 2px solid #ff0000;
+        }
+
+        .youtube:hover {
+            background: #ff0000;
+        }
+
+        .projects-section {
+            margin: 80px 0;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--accent-color);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--accent-color);
+            bottom: -10px;
+            left: 25%;
+            border-radius: 3px;
+        }
+
+        .projects-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--secondary-color);
+            border-radius: 15px;
+            overflow: hidden;
+            width: 350px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .project-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-btn:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.5);
+        }
+
+        .support-section {
+            margin: 80px 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .support-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--secondary-color);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-color);
+            border: none;
+            border-radius: 8px;
+            color: var(--primary-color);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(90deg, var(--accent-color), #4facfe);
+            background-size: 200% auto;
+        }
+
+        .submit-btn:hover {
+            background-position: right center;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 2.5s ease-in-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Glow effect */
+        .glow {
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .welcome-section h2 {
+                font-size: 2rem;
+            }
+
+            .social-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .project-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ocean-bg">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <img src="https://storage.teleservices.io/Teleservice_6f970b27e0b0.png" alt="Black Mask Logo" class="logo floating">
+            <h1>Black Mask</h1>
+        </header>
+
+        <section class="welcome-section">
+            <h2 class="glow">Welcome</h2>
+            <p>Explore my projects and connect with me through social media. Feel free to reach out for any inquiries or support.</p>
+        </section>
+
+        <section class="social-section">
+            <a href="https://t.me/" class="social-btn telegram" target="_blank">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="https://tiktok.com/" class="social-btn tiktok" target="_blank">
+                <i class="fab fa-tiktok"></i> TikTok
+            </a>
+            <a href="https://youtube.com/" class="social-btn youtube" target="_blank">
+                <i class="fab fa-youtube"></i> YouTube
+            </a>
+        </section>
+
+        <section class="projects-section">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <img src="https://i.imgur.com/zGwS36V.jpeg" alt="QR Generator Oceánico" class="project-img">
+                    <div class="project-content">
+                        <h3 class="project-title">QR Generator Oceánico</h3>
+                        <p class="project-desc">It is a website where you can generate QR codes through a text or link.</p>
+                        <a href="https://yomboxggt.neocities.org/Probe/" class="project-btn" target="_blank">See</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="support-section">
+            <h2 class="section-title">Support</h2>
+            <div class="support-form">
+                <h3 class="form-title">Contact Me</h3>
+                <form id="supportForm">
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Black Mask. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form submission
+            const supportForm = document.getElementById('supportForm');
+            
+            supportForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const message = document.getElementById('message').value;
+                const subject = 'Support Request from Black Mask Dashboard';
+                const mailtoLink = `mailto:kaitonekox@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+                
+                // Open default email client
+                window.location.href = mailtoLink;
+                
+                // Show confirmation
+                alert('Your message has been prepared for sending. Please check your email client.');
+                supportForm.reset();
+            });
+
+            // Add hover effects to all buttons
+            const buttons = document.querySelectorAll('.social-btn, .project-btn, .submit-btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Add ripple effect to buttons
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const x = e.clientX - e.target.getBoundingClientRect().left;
+                    const y = e.clientY - e.target.getBoundingClientRect().top;
+                    
+                    const ripple = document.createElement('span');
+                    ripple.className = 'ripple';
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 1000);
+                });
+            });
+
+            // Animate elements when they come into view
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.welcome-section, .social-section, .projects-section, .support-section, footer');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state for animation
+            const sections = document.querySelectorAll('.welcome-section, .social-section, .projects-section, .support-section, footer');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+            
+            // Add cute floating fish animation
+            const oceanBg = document.querySelector('.ocean-bg');
+            for (let i = 0; i < 5; i++) {
+                const fish = document.createElement('div');
+                fish.className = 'fish';
+                fish.innerHTML = '🐠';
+                fish.style.position = 'absolute';
+                fish.style.fontSize = `${Math.random() * 20 + 10}px`;
+                fish.style.left = `${Math.random() * 100}%`;
+                fish.style.top = `${Math.random() * 100}%`;
+                fish.style.opacity = '0.7';
+                fish.style.animation = `swim ${Math.random() * 10 + 10}s linear infinite`;
+                fish.style.animationDelay = `${Math.random() * 5}s`;
+                oceanBg.appendChild(fish);
+            }
+            
+            // Add style for fish animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes swim {
+                    0% {
+                        transform: translateX(0) translateY(0);
+                    }
+                    25% {
+                        transform: translateX(50px) translateY(-20px);
+                    }
+                    50% {
+                        transform: translateX(100px) translateY(0);
+                    }
+                    75% {
+                        transform: translateX(50px) translateY(20px);
+                    }
+                    100% {
+                        transform: translateX(0) translateY(0);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
